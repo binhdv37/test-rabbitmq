@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ConsumerApplication implements CommandLineRunner {
 
     private final static String QUEUE_NAME = "hello";
+    private final static String TASK_QUEUE = "task_queue";
 
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class, args);
@@ -25,10 +26,16 @@ public class ConsumerApplication implements CommandLineRunner {
         Connection connection = factory.newConnection();
         Channel channel = connection.createChannel();
 
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        boolean durable = true;
+        channel.queueDeclare(TASK_QUEUE, durable, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
-        channel.basicQos(1); // accept only one unack-ed message at a time (see below)
+
+        // fair dispatch
+        int prefetchCount = 1;
+        channel.basicQos(prefetchCount); // accept only one unack-ed message at a time (see below)
+        // if does not set basicQos(1) => rabbitmq dispatch message sequencely, mean :
+        // eg: if has 2 worker, 1 worker only receive odd message, 1 worker only receive even message
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
@@ -44,7 +51,7 @@ public class ConsumerApplication implements CommandLineRunner {
             }
         };
         boolean autoAck = false; // acknowledgment is covered below
-        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });
+        channel.basicConsume(TASK_QUEUE, autoAck, deliverCallback, consumerTag -> { });
     }
 
     private static void doWork(String task) throws InterruptedException {
