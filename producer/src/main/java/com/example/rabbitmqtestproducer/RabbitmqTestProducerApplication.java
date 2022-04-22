@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Scanner;
+
 @SpringBootApplication
 public class RabbitmqTestProducerApplication implements CommandLineRunner {
 
@@ -25,9 +27,13 @@ public class RabbitmqTestProducerApplication implements CommandLineRunner {
                 Channel channel = connection.createChannel()
         ) {
             channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-            String message = "Hello World!";
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
-            System.out.println(" [x] Sent '" + message + "'");
+
+            Scanner sc = new Scanner(System.in);
+            while (sc.hasNext()) {
+                String message = sc.nextLine();
+                channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+                System.out.println(" [x] Sent '" + message + "'");
+            }
         }
     }
 }

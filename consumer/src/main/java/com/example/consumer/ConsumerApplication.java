@@ -28,10 +28,28 @@ public class ConsumerApplication implements CommandLineRunner {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
+        channel.basicQos(1); // accept only one unack-ed message at a time (see below)
+
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
             String message = new String(delivery.getBody(), "UTF-8");
+
             System.out.println(" [x] Received '" + message + "'");
+            try {
+                doWork(message);
+            } catch (Exception e) {
+              e.printStackTrace();
+            } finally {
+                System.out.println(" [x] Done");
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false); // ack that message has been processed successful => rabbitmq can remove this message
+            }
         };
-        channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> { });
+        boolean autoAck = false; // acknowledgment is covered below
+        channel.basicConsume(QUEUE_NAME, autoAck, deliverCallback, consumerTag -> { });
+    }
+
+    private static void doWork(String task) throws InterruptedException {
+        for (char ch: task.toCharArray()) {
+            if (ch == '.') Thread.sleep(1000);
+        }
     }
 }
