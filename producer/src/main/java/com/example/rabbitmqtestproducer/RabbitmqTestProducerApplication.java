@@ -1,5 +1,6 @@
 package com.example.rabbitmqtestproducer;
 
+import com.example.rabbitmqtestproducer.pub_sub.EmitLog;
 import com.example.rabbitmqtestproducer.work_queue.Send;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,9 @@ public class RabbitmqTestProducerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Send send = new Send();
-        send.startProducer();
+//        Send send = new Send();
+//        send.startProducer();
+        EmitLog emitLog = new EmitLog();
+        emitLog.startProducer();
     }
 }

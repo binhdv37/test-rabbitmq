@@ -1,5 +1,6 @@
 package com.example.consumer;
 
+import com.example.consumer.pub_sub.ReceiveLogs;
 import com.example.consumer.work_queue.Recv;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,7 +16,9 @@ public class ConsumerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Recv recv = new Recv();
-        recv.startConsumer();
+//        Recv recv = new Recv();
+//        recv.startConsumer();
+        ReceiveLogs receiveLogs = new ReceiveLogs();
+        receiveLogs.startConsumer();
     }
 }
