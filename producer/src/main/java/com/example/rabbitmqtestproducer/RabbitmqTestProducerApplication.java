@@ -1,6 +1,6 @@
 package com.example.rabbitmqtestproducer;
 
-import com.example.rabbitmqtestproducer.component.Send;
+import com.example.rabbitmqtestproducer.work_queue.Send;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

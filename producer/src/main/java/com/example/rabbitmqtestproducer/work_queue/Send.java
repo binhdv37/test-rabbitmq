@@ -1,4 +1,4 @@
-package com.example.rabbitmqtestproducer.component;
+package com.example.rabbitmqtestproducer.work_queue;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
