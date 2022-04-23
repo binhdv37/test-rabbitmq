@@ -40,7 +40,7 @@ public class Recv {
                 channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false); // ack that message has been processed successful => rabbitmq can remove this message
             }
         };
-        boolean autoAck = false; // acknowledgment is covered below
+        boolean autoAck = false; // turn on ack - (tell rabbitmq wait for ack message from consumer to remove message)
         channel.basicConsume(TASK_QUEUE, autoAck, deliverCallback, consumerTag -> { });
     }
 

@@ -9,6 +9,8 @@ import java.util.Scanner;
 
 public class Send {
 
+    // declare queue as durable = true  and message PERSISTENT_TEXT_PLAIN => if rabbitmq off, does not lost message in queue
+
     private final static String QUEUE_NAME = "hello";
     private final static String TASK_QUEUE = "task_queue";
 
