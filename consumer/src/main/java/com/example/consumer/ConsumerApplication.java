@@ -1,7 +1,6 @@
 package com.example.consumer;
 
-import com.example.consumer.pub_sub.ReceiveLogs;
-import com.example.consumer.work_queue.Recv;
+import com.example.consumer.routing.ReceiveLogsDirect;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +17,11 @@ public class ConsumerApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 //        Recv recv = new Recv();
 //        recv.startConsumer();
-        ReceiveLogs receiveLogs = new ReceiveLogs();
-        receiveLogs.startConsumer();
+
+//        ReceiveLogs receiveLogs = new ReceiveLogs();
+//        receiveLogs.startConsumer();
+
+        ReceiveLogsDirect receiveLogsDirect = new ReceiveLogsDirect();
+        receiveLogsDirect.startConsumer();
     }
 }
