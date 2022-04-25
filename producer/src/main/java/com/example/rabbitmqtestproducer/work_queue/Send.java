@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Send {
 
+    // Two things are required to make sure that messages aren't lost: we need to mark both the queue and messages as durable.
     // declare queue as durable = true  and message PERSISTENT_TEXT_PLAIN => if rabbitmq off, does not lost message in queue
 
     private final static String QUEUE_NAME = "hello";
