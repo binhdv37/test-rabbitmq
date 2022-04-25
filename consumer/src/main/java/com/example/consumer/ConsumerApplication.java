@@ -1,6 +1,7 @@
 package com.example.consumer;
 
 import com.example.consumer.routing.ReceiveLogsDirect;
+import com.example.consumer.topic.ReceiveLogsTopic;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,10 @@ public class ConsumerApplication implements CommandLineRunner {
 //        ReceiveLogs receiveLogs = new ReceiveLogs();
 //        receiveLogs.startConsumer();
 
-        ReceiveLogsDirect receiveLogsDirect = new ReceiveLogsDirect();
-        receiveLogsDirect.startConsumer();
+//        ReceiveLogsDirect receiveLogsDirect = new ReceiveLogsDirect();
+//        receiveLogsDirect.startConsumer();
+
+        ReceiveLogsTopic receiveLogsTopic = new ReceiveLogsTopic();
+        receiveLogsTopic.startConsumer();
     }
 }
