@@ -3,6 +3,8 @@ package com.example.rabbitmqtestproducer;
 import com.example.rabbitmqtestproducer.hello_world.SendHelloWorld;
 import com.example.rabbitmqtestproducer.pub_sub.EmitLog;
 import com.example.rabbitmqtestproducer.routing.EmitLogDirect;
+import com.example.rabbitmqtestproducer.rpc.RpcClient;
+import com.example.rabbitmqtestproducer.topic.EmitLogTopic;
 import com.example.rabbitmqtestproducer.work_queue.Send;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -28,5 +30,11 @@ public class RabbitmqTestProducerApplication implements CommandLineRunner {
 
 //        EmitLogDirect emitLogDirect = new EmitLogDirect();
 //        emitLogDirect.startProducer();
+
+//        EmitLogTopic emitLogTopic = new EmitLogTopic();
+//        emitLogTopic.startProducer();
+
+//        RpcClient rpcClient = new RpcClient();
+//        rpcClient.startRpcClient();
     }
 }
