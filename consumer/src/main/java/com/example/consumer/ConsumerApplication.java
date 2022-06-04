@@ -1,5 +1,6 @@
 package com.example.consumer;
 
+import com.example.consumer.hello_world.RecvHelloWorld;
 import com.example.consumer.routing.ReceiveLogsDirect;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,13 +16,16 @@ public class ConsumerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        RecvHelloWorld recvHelloWorld = new RecvHelloWorld();
+        recvHelloWorld.startConsumer();
+
 //        Recv recv = new Recv();
 //        recv.startConsumer();
 
 //        ReceiveLogs receiveLogs = new ReceiveLogs();
 //        receiveLogs.startConsumer();
 
-        ReceiveLogsDirect receiveLogsDirect = new ReceiveLogsDirect();
-        receiveLogsDirect.startConsumer();
+//        ReceiveLogsDirect receiveLogsDirect = new ReceiveLogsDirect();
+//        receiveLogsDirect.startConsumer();
     }
 }

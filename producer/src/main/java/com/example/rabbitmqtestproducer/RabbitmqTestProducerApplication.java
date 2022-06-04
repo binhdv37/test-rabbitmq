@@ -1,5 +1,6 @@
 package com.example.rabbitmqtestproducer;
 
+import com.example.rabbitmqtestproducer.hello_world.SendHelloWorld;
 import com.example.rabbitmqtestproducer.pub_sub.EmitLog;
 import com.example.rabbitmqtestproducer.routing.EmitLogDirect;
 import com.example.rabbitmqtestproducer.work_queue.Send;
@@ -16,13 +17,16 @@ public class RabbitmqTestProducerApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        SendHelloWorld sendHelloWorld = new SendHelloWorld();
+        sendHelloWorld.startProducer();
+
 //        Send send = new Send();
 //        send.startProducer();
 
 //        EmitLog emitLog = new EmitLog();
 //        emitLog.startProducer();
 
-        EmitLogDirect emitLogDirect = new EmitLogDirect();
-        emitLogDirect.startProducer();
+//        EmitLogDirect emitLogDirect = new EmitLogDirect();
+//        emitLogDirect.startProducer();
     }
 }
